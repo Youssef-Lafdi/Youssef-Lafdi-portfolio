@@ -1,0 +1,313 @@
+@import "tailwindcss";
+
+/* ============================================================
+   Theme-Tokens (Tailwind v4 – kein tailwind.config.js nötig)
+   ============================================================ */
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* Marken-Akzente – ausschließlich diese Farben werden verwendet */
+  --color-accent: #10b981;   /* Emerald 500 (Primär) */
+  --color-accent-2: #22d3ee; /* Cyan 400 (Sekundär)   */
+}
+
+/* ============================================================
+   Lenis – Smooth-Scroll Basis-Styles
+   ============================================================ */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+/* ============================================================
+   Grundlagen
+   ============================================================ */
+html {
+  color-scheme: dark;
+}
+
+body {
+  background-color: var(--color-slate-950);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background-color: rgb(16 185 129 / 0.3);
+  color: #f8fafc;
+}
+
+/* ============================================================
+   Technisches Grid-Pattern (mit radialem Ausblenden der Ränder)
+   ============================================================ */
+.grid-pattern {
+  background-image:
+    linear-gradient(to right, rgb(148 163 184 / 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(148 163 184 / 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 78%);
+  mask-image: radial-gradient(ellipse 70% 60% at 50% 40%, #000 20%, transparent 78%);
+}
+
+/* ============================================================
+   Riesiger Hintergrundtext "PORTFOLIO" (Stroke, dezent + Parallax)
+   Kein opacity – nur transparente Füllung + sichtbarer Stroke.
+   ============================================================ */
+.hero-bg-wrapper {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+  /* Nur oberer Bereich sichtbar – nach unten ausblenden, damit der Bio-Text
+     darunter (auch bei Parallax-Verschiebung nach unten) frei bleibt. */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 50%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 30%, transparent 50%);
+}
+
+.hero-bg-text {
+  position: absolute;
+  top: 24%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(8rem, 22vw, 24rem);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(16, 185, 129, 0.15);
+  white-space: nowrap;
+  user-select: none;
+  will-change: transform;
+}
+
+@media (max-width: 640px) {
+  .hero-bg-wrapper {
+    -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 24%, transparent 38%);
+    mask-image: linear-gradient(to bottom, #000 0%, #000 24%, transparent 38%);
+  }
+  .hero-bg-text {
+    top: 20%;
+    font-size: clamp(6rem, 30vw, 12rem);
+  }
+}
+
+/* ============================================================
+   Hero: langsam rotierender Radial-Gradient
+   (Elliptisch, damit die Rotation sichtbar ist)
+   ============================================================ */
+.hero-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 150vmax;
+  height: 150vmax;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(
+    ellipse 46% 34% at 50% 50%,
+    rgb(16 185 129 / 0.22),
+    transparent 72%
+  );
+  will-change: transform;
+}
+
+@keyframes spin-slow {
+  from { transform: translate(-50%, -50%) rotate(0deg); }
+  to   { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+/* ============================================================
+   Block-Cursor ▌ (blinkend)
+   ============================================================ */
+@keyframes cursor-blink {
+  0%, 45%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 0.1em;
+  color: var(--color-accent);
+  animation: cursor-blink 1.1s steps(1, end) infinite;
+}
+
+/* ============================================================
+   Scroll-Indicator – sanftes Auf-und-Ab
+   ============================================================ */
+@keyframes float-arrow {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(6px); }
+}
+
+.scroll-arrow {
+  animation: float-arrow 2s ease-in-out infinite;
+}
+
+/* ============================================================
+   Status-Bar – pulsierender Emerald-Punkt (Ring breitet sich aus)
+   ============================================================ */
+@keyframes dot-pulse {
+  0%   { box-shadow: 0 0 0 0 rgb(16 185 129 / 0.55); }
+  70%  { box-shadow: 0 0 0 8px rgb(16 185 129 / 0); }
+  100% { box-shadow: 0 0 0 0 rgb(16 185 129 / 0); }
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background-color: var(--color-accent);
+  animation: dot-pulse 2s ease-out infinite;
+}
+
+/* ============================================================
+   Marquee – endloses Laufband (Inhalt wird doppelt gerendert,
+   translateX(-50%) ergibt eine nahtlose Schleife)
+   ============================================================ */
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+.marquee {
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-x 30s linear infinite;
+  will-change: transform;
+}
+
+.marquee-track.is-reverse {
+  animation-direction: reverse;
+}
+
+/* Mobile: schneller */
+@media (max-width: 640px) {
+  .marquee-track {
+    animation-duration: 18s;
+  }
+}
+
+/* ============================================================
+   CTA-Button – dezenter Glow-Puls (3s Loop)
+   ============================================================ */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgb(16 185 129 / 0); }
+  50%      { box-shadow: 0 0 28px 2px rgb(16 185 129 / 0.45); }
+}
+
+.btn-glow {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ============================================================
+   Hero – initiale Zustände (nur wenn .anim-ready gesetzt ist).
+   GSAP animiert anschließend auf die Endwerte.
+   ============================================================ */
+.anim-ready [data-hero-mask] {
+  opacity: 0;
+  transform: translateY(100%);
+}
+.anim-ready [data-hero-fade] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.anim-ready [data-hero-cta] {
+  opacity: 0;
+  transform: translateY(16px) scale(0.97);
+}
+.anim-ready [data-highlight] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.anim-ready [data-project],
+.anim-ready [data-tag] {
+  opacity: 0;
+}
+.anim-ready [data-editorial],
+.anim-ready [data-col-left],
+.anim-ready [data-col-right] {
+  opacity: 0;
+}
+.anim-ready [data-skill-card] {
+  opacity: 0;
+  transform: translateY(20px);
+}
+.anim-ready [data-cta-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+.anim-ready [data-reveal],
+.anim-ready [data-reveal-card] {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+/* ============================================================
+   Reduced Motion – keine Bewegung, aber alles vollständig sichtbar
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-glow,
+  .cursor,
+  .scroll-arrow,
+  .status-dot,
+  .marquee-track,
+  .btn-glow {
+    animation: none !important;
+  }
+
+  [data-hero-mask] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-hero-fade],
+  [data-hero-cta] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-highlight] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-project],
+  [data-tag] {
+    opacity: 1 !important;
+  }
+  [data-editorial],
+  [data-col-left],
+  [data-col-right] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-skill-card] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-cta-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  [data-reveal],
+  [data-reveal-card] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,127 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const email = 'yousseflafdi00@gmail.com';
+const telegramHandle = '@yousseflafdi';
+const telegramUrl = 'https://t.me/yousseflafdi';
+const githubHandle = 'github.com/Youssef-Lafdi';
+const githubUrl = 'https://github.com/Youssef-Lafdi';
+const phone = '+212 632 462 516';
+const phoneHref = '+212632462516';
+
+const contacts = [
+  {
+    prefix: '@',
+    label: 'E-Mail',
+    value: email,
+    href: `mailto:${email}`,
+    external: false,
+  },
+  {
+    prefix: '~',
+    label: 'Telegram',
+    value: telegramHandle,
+    href: telegramUrl,
+    external: true,
+  },
+  {
+    prefix: '$',
+    label: 'GitHub',
+    value: githubHandle,
+    href: githubUrl,
+    external: true,
+  },
+  {
+    prefix: '#',
+    label: 'Telefon',
+    value: phone,
+    href: `tel:${phoneHref}`,
+    external: false,
+  },
+];
+---
+
+<BaseLayout
+  title="Kontakt | Youssef Lafdi"
+  description="Kontaktiere Youssef Lafdi — auf der Suche nach einer Ausbildung zum Kaufmann für Digitalisierungsmanagement ab 2026 in Deutschland."
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-6xl px-6 pb-24 pt-16 sm:pt-24">
+    <header class="max-w-3xl">
+      <p class="font-mono text-sm text-emerald-500">
+        <span data-reveal>// lass uns sprechen</span><span class="cursor" aria-hidden="true">▌</span>
+      </p>
+      <h1
+        data-reveal
+        class="mt-4 text-[clamp(2.5rem,9vw,6rem)] font-black leading-[0.92] tracking-tight text-slate-50"
+      >
+        KONTAKT
+      </h1>
+      <p data-reveal class="mt-6 max-w-xl leading-relaxed text-slate-400">
+        Ich suche eine Ausbildung zum Kaufmann für Digitalisierungsmanagement ab
+        2026 in Deutschland. Offen für Gespräche auf Deutsch, Englisch oder
+        Arabisch.
+      </p>
+    </header>
+
+    <!-- Big CTA -->
+    <section data-cta class="mt-16" aria-labelledby="cta-titel">
+      <h2
+        data-cta-reveal
+        id="cta-titel"
+        class="text-[clamp(2rem,8vw,5rem)] font-black leading-[0.92] tracking-tight text-slate-50"
+      >
+        LASS UNS<br />SPRECHEN.
+      </h2>
+
+      <div data-cta-reveal class="mt-10">
+        <a
+          data-magnetic
+          href={`mailto:${email}`}
+          class="btn-glow inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-7 py-3.5 text-sm font-semibold text-slate-950 transition-colors duration-200 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        >
+          E-Mail senden
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Contact cards -->
+    <ul class="mt-16 grid gap-4 sm:grid-cols-2">
+      {
+        contacts.map((contact) => (
+          <li data-reveal-card>
+            <a
+              href={contact.href}
+              target={contact.external ? '_blank' : undefined}
+              rel={contact.external ? 'noopener noreferrer' : undefined}
+              class="group flex items-start gap-4 rounded-xl border border-slate-800 bg-slate-900/40 p-6 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.5)]"
+            >
+              <span class="mt-0.5 font-mono text-lg text-slate-600 transition-colors group-hover:text-emerald-500" aria-hidden="true">
+                {contact.prefix}
+              </span>
+              <span class="min-w-0">
+                <span class="block font-mono text-xs uppercase tracking-wider text-slate-500">
+                  {contact.label}
+                </span>
+                <span class="mt-1 block break-all text-slate-100 transition-colors group-hover:text-emerald-400">
+                  {contact.value}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initRevealAnimations } from '../scripts/animations';
+  initRevealAnimations();
+</script>

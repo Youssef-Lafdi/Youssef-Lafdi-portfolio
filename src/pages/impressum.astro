@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<BaseLayout
+  title="Impressum | Youssef Lafdi"
+  description="Impressum und rechtliche Angaben gemäß § 5 TMG von Youssef Lafdi."
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-3xl px-6 pb-24 pt-16 sm:pt-24">
+    <h1
+      data-reveal
+      class="text-[clamp(2.5rem,8vw,4.5rem)] font-black leading-[0.95] tracking-tight text-slate-50"
+    >
+      Impressum
+    </h1>
+    <p data-reveal class="mt-4 font-mono text-sm text-emerald-500">
+      Angaben gemäß § 5 TMG
+    </p>
+
+    <div data-reveal class="mt-10 space-y-10 leading-relaxed text-slate-400">
+      <section>
+        <h2 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Verantwortlicher</h2>
+        <address class="mt-3 not-italic text-slate-300">
+          Youssef Lafdi<br />
+          RUE 14 NR 372 QRT AIT MOU<br />
+          M'Rirt<br />
+          Béni Mellal-Khénifra<br />
+          Marokko
+        </address>
+        <p class="mt-4">
+          E-Mail:
+          <a href="mailto:yousseflafdi00@gmail.com" class="text-slate-200 underline decoration-slate-700 underline-offset-4 transition-colors hover:text-emerald-400">yousseflafdi00@gmail.com</a>
+        </p>
+        <p class="mt-1">
+          Telefon:
+          <a href="tel:+212632462516" class="text-slate-200 underline decoration-slate-700 underline-offset-4 transition-colors hover:text-emerald-400">+212 632 462 516</a>
+        </p>
+      </section>
+
+      <section>
+        <h2 class="font-mono text-sm uppercase tracking-wider text-emerald-500">
+          Redaktionell verantwortlich
+        </h2>
+        <p class="mt-3">
+          Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:
+        </p>
+        <p class="mt-1 text-slate-300">Youssef Lafdi</p>
+      </section>
+
+      <section>
+        <h2 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Haftungsausschluss</h2>
+
+        <h3 class="mt-4 font-semibold text-slate-300">Haftung für Inhalte</h3>
+        <p class="mt-2">
+          Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die
+          Richtigkeit, Vollständigkeit und Aktualität der Inhalte kann ich jedoch
+          keine Gewähr übernehmen. Als Diensteanbieter bin ich gemäß § 7 Abs. 1
+          TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
+          verantwortlich.
+        </p>
+
+        <h3 class="mt-6 font-semibold text-slate-300">Haftung für Links</h3>
+        <p class="mt-2">
+          Diese Website enthält Links zu externen Websites Dritter, auf deren
+          Inhalte ich keinen Einfluss habe. Für die Inhalte der verlinkten Seiten
+          ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+          Bei Bekanntwerden von Rechtsverletzungen werden derartige Links umgehend
+          entfernt.
+        </p>
+
+        <h3 class="mt-6 font-semibold text-slate-300">Urheberrecht</h3>
+        <p class="mt-2">
+          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
+          Seiten unterliegen dem marokkanischen Urheberrecht. Beiträge Dritter sind
+          als solche gekennzeichnet. Die Vervielfältigung, Bearbeitung und
+          Verbreitung außerhalb der Grenzen des Urheberrechts bedürfen der
+          schriftlichen Zustimmung.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initRevealAnimations } from '../scripts/animations';
+  initRevealAnimations();
+</script>

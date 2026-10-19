@@ -1,0 +1,22 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-slate-900">
+  <div
+    class="mx-auto flex w-full max-w-6xl flex-col gap-4 px-6 py-8 font-mono text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between"
+  >
+    <p>© {year} Youssef Lafdi</p>
+    <nav aria-label="Rechtliches">
+      <ul class="flex flex-wrap items-center gap-x-5 gap-y-2">
+        <li>
+          <a href="/impressum" class="transition-colors duration-200 hover:text-emerald-400">Impressum</a>
+        </li>
+        <li>
+          <a href="/datenschutz" class="transition-colors duration-200 hover:text-emerald-400">Datenschutz</a>
+        </li>
+      </ul>
+    </nav>
+    <p>M'Rirt, MA — Built with Astro &amp; GSAP</p>
+  </div>
+</footer>

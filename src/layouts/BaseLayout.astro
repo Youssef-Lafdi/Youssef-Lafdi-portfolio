@@ -1,0 +1,100 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Youssef Lafdi — Digitalisierung Engineer',
+  description = 'Youssef Lafdi — Digitalisierung Engineer aus M\'Rirt, Marokko. Ich baue Automationen mit Python, KI und APIs. Auf der Suche nach einer Ausbildung / Dualem Studium in Deutschland.',
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#020617" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=JetBrains+Mono:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!--
+      Die Klasse .anim-ready aktiviert die initialen (versteckten) Animations-
+      Zustände. Sie wird NUR gesetzt, wenn JS verfügbar ist UND keine reduzierte
+      Bewegung gewünscht wird – ohne sie ist die Seite sofort vollständig sichtbar.
+    -->
+    <script is:inline>
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('anim-ready');
+        // Fail-open-Watchdog: Lädt das Animations-JS nicht (Blocker, 404,
+        // Bündelungsfehler), darf die Seite nicht unsichtbar bleiben.
+        // Nach 3 s wird der sichtbare Zustand wiederhergestellt, falls
+        // das Skript sich nicht erfolgreich initialisiert hat.
+        setTimeout(function () {
+          if (document.documentElement.dataset.animDone !== '1') {
+            document.documentElement.classList.remove('anim-ready');
+          }
+        }, 3000);
+      }
+    </script>
+
+    <noscript>
+      <style>
+        [data-hero-mask] { opacity: 1 !important; transform: none !important; }
+        [data-hero-fade],
+        [data-hero-cta] { opacity: 1 !important; transform: none !important; }
+      </style>
+    </noscript>
+  </head>
+
+  <body class="bg-slate-950 font-sans text-slate-400 antialiased">
+    <slot />
+
+    <script>
+      import Lenis from '@studio-freight/lenis';
+      import gsap from 'gsap';
+      import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      window.scrollTo(0, 0);
+
+      if (!prefersReduced) {
+        const lenis = new Lenis({
+          duration: 1.1,
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          touchMultiplier: 1.4,
+        });
+
+        lenis.scrollTo(0, { immediate: true });
+
+        // Lenis mit dem GSAP-Ticker und ScrollTrigger synchronisieren
+        lenis.on('scroll', ScrollTrigger.update);
+        gsap.ticker.add((time) => lenis.raf(time * 1000));
+        gsap.ticker.lagSmoothing(0);
+
+        // Für spätere Sektionen (Anker-Navigation) verfügbar machen
+        (window as unknown as { __lenis?: unknown }).__lenis = lenis;
+      }
+    </script>
+  </body>
+</html>

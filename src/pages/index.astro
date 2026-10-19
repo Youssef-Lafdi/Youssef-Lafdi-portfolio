@@ -1,0 +1,504 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const email = 'yousseflafdi00@gmail.com';
+const telegram = 'https://t.me/yousseflafdi';
+const github = 'https://github.com/youssef-lafdi';
+
+const highlights = [
+  { to: 2, suffix: '+', decimals: 0, label: 'Jahre Erfahrung', sub: 'davon über 1,5 Jahre als Manager' },
+  { to: 215, suffix: '+', decimals: 0, label: 'Jobs pro Lauf', sub: 'Automatisiert' },
+  { to: 84.4, suffix: '%', decimals: 1, label: 'Ø Match', sub: 'AI-bewertet' },
+  { to: 3, suffix: ' min', decimals: 0, label: 'CV → Bewerbung', sub: 'Effizient' },
+  { to: 1, suffix: '', decimals: 0, label: 'Bachelorarbeit', sub: 'ChatGPT in Unternehmen' },
+];
+
+const marqueeSkills = [
+  'Python',
+  'SQL',
+  'KI-Tools',
+  'Web Scraping',
+  'Telegram Bots',
+  'REST APIs',
+  'ERP-Systeme',
+  'Datenanalyse',
+  'Git',
+  'Linux',
+  'Teamführung',
+  'Prozessoptimierung',
+  'Freelance Web/Bot-Entwicklung',
+];
+const skillsRow = marqueeSkills.map((skill) => skill.toUpperCase());
+
+const projectTags = ['BOT', 'AI', 'AUTOMATION'];
+const projectStats = [
+  { to: 215, suffix: '+', decimals: 0, label: 'Jobs pro Lauf' },
+  { to: 84.4, suffix: '%', decimals: 1, label: 'Ø Match-Score' },
+  { to: 3, suffix: ' min', decimals: 0, label: 'CV → Bewerbung' },
+];
+---
+
+<BaseLayout>
+  <!-- ==================== A) HERO ==================== -->
+  <Header />
+  <section
+    id="hero"
+    class="hero-section relative flex min-h-[100svh] flex-col overflow-hidden"
+  >
+    <!-- Hintergrund-Ebenen (rein dekorativ) -->
+    <div class="pointer-events-none absolute inset-0 -z-10" aria-hidden="true">
+      <!-- langsam rotierender Radial-Gradient -->
+      <div class="hero-glow"></div>
+
+      <!-- technisches Grid-Pattern -->
+      <div class="grid-pattern absolute inset-0"></div>
+
+      <!-- weicher Übergang zur nächsten Sektion -->
+      <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-b from-transparent to-slate-950"></div>
+    </div>
+
+    <!-- Riesiger Hintergrundtext PORTFOLIO (Parallax) -->
+    <div class="hero-bg-wrapper" aria-hidden="true">
+      <div class="hero-bg-text">PORTFOLIO</div>
+    </div>
+
+    <!-- Inhalt -->
+    <div
+      class="relative z-10 mx-auto flex w-full max-w-6xl flex-1 flex-col justify-center px-6 py-16 sm:py-32"
+    >
+      <!-- whoami – Typewriter + blinkender Cursor -->
+      <p class="font-mono text-sm sm:text-base">
+        <span class="text-slate-600" aria-hidden="true">&gt;&nbsp;</span><span
+          data-typewriter
+          data-text="whoami"
+          aria-hidden="true"
+          class="text-emerald-400"
+        >whoami</span><span class="cursor" aria-hidden="true">▌</span>
+        <span class="sr-only">whoami</span>
+      </p>
+
+      <!-- Name – Text-Mask-Reveal von links nach rechts -->
+      <h1
+        class="mt-6 overflow-hidden font-black leading-[0.92] tracking-tight text-slate-50"
+        aria-label="Youssef Lafdi"
+      >
+        <span
+          data-hero-mask
+          class="inline-block text-[clamp(2rem,10vw,8rem)]"
+          aria-hidden="true"
+        >
+          YOUSSEF LAFDI
+        </span>
+      </h1>
+
+      <!-- Untertitel – Mono, mit Pipe-Trennern -->
+      <p
+        data-hero-fade
+        class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-1 font-mono text-sm text-slate-400 sm:mt-8 sm:text-base"
+      >
+        Digitalisierung Engineer · Automation Builder · AI Integrator
+      </p>
+      <p
+        data-hero-fade
+        class="mt-2 font-mono text-sm text-slate-500 sm:text-base"
+      >
+        Ausbildung Kaufmann für Digitalisierungsmanagement · Bachelor Wirtschaftswissenschaften
+      </p>
+
+      <!-- Bio -->
+      <p
+        data-hero-fade
+        class="mt-4 max-w-xl text-base leading-relaxed text-slate-400 sm:mt-6"
+      >
+        Bachelor in Wirtschaftswissenschaften &amp; Management (2024) mit über zwei
+        Jahren praktischer Erfahrung im Café-Betrieb – vom Service bis zur
+        Teamführung; davon über 1,5 Jahre als Manager. Parallel Freelance-Projekte
+        in Web- und Bot-Entwicklung (Python, SQLite) sowie intensives Selbststudium
+        von IT und KI. Deutsch auf B2-Niveau (telc-Vorbereitung läuft). Meine
+        Bachelorarbeit über ChatGPT in Unternehmen weckte mein Interesse an
+        digitalen Geschäftsprozessen. Deshalb suche ich eine Ausbildung zum
+        Kaufmann für Digitalisierungsmanagement.
+      </p>
+
+      <!-- Buttons – Scale + Fade -->
+      <div class="mt-8 flex flex-wrap items-center gap-4 sm:mt-10">
+        <a
+          data-hero-cta
+          data-magnetic
+          href="#projekt"
+          class="group inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-6 py-3 text-sm font-semibold text-slate-950 transition-colors duration-200 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        >
+          Projekte ansehen
+          <span class="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
+            →
+          </span>
+        </a>
+
+        <a
+          data-hero-cta
+          href="/cv.pdf"
+          download
+          class="group inline-flex items-center gap-2 rounded-lg border border-slate-700 px-6 py-3 text-sm font-semibold text-slate-200 transition-colors duration-200 hover:border-emerald-500/50 hover:text-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+        >
+          CV herunterladen
+          <span class="transition-transform duration-200 group-hover:translate-y-0.5" aria-hidden="true">
+            ↓
+          </span>
+        </a>
+      </div>
+
+      <!-- Links – Mono -->
+      <ul class="mt-8 flex flex-wrap gap-x-8 gap-y-2 font-mono text-sm">
+        <li data-hero-cta>
+          <a
+            href={`mailto:${email}`}
+            class="group inline-flex items-center gap-1.5 text-slate-500 transition-colors duration-200 hover:text-emerald-400"
+          >
+            <span class="text-slate-700 transition-colors group-hover:text-emerald-500/60" aria-hidden="true">@</span>
+            email
+          </a>
+        </li>
+        <li data-hero-cta>
+          <a
+            href={telegram}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-1.5 text-slate-500 transition-colors duration-200 hover:text-emerald-400"
+          >
+            <span class="text-slate-700 transition-colors group-hover:text-emerald-500/60" aria-hidden="true">~</span>
+            telegram
+          </a>
+        </li>
+        <li data-hero-cta>
+          <a
+            href={github}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group inline-flex items-center gap-1.5 text-slate-500 transition-colors duration-200 hover:text-emerald-400"
+          >
+            <span class="text-slate-700 transition-colors group-hover:text-emerald-500/60" aria-hidden="true">$</span>
+            github
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Scroll-Indicator -->
+    <div class="relative z-10 mb-8 flex justify-center" aria-hidden="true">
+      <div class="flex flex-col items-center gap-2 font-mono text-[10px] uppercase tracking-[0.3em] text-slate-500">
+        <span>Scroll</span>
+        <span class="scroll-arrow text-emerald-500">↓</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== B) STATUS-BAR ==================== -->
+  <div
+    class="sticky top-0 z-40 border-y border-slate-800/80 bg-slate-950/80 backdrop-blur-md"
+  >
+    <div
+      class="mx-auto flex w-full max-w-6xl flex-wrap items-center gap-x-3 gap-y-1 px-6 py-3 font-mono text-xs leading-relaxed sm:text-sm"
+    >
+      <span class="font-semibold text-emerald-500">[STATUS]</span>
+      <span class="status-dot shrink-0" aria-hidden="true"></span>
+      <span
+        data-status-text
+        data-text="Available for Ausbildung 2026 · Location: M'Rirt, MA · Languages: DE(B2) EN(fluent) AR(native)"
+        class="text-slate-400"
+      >
+        Available for Ausbildung 2026 · Location: M'Rirt, MA · Languages: DE(B2) EN(fluent) AR(native)
+      </span>
+    </div>
+  </div>
+
+  <!-- ==================== C) HIGHLIGHTS ==================== -->
+  <section class="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28" aria-label="Kennzahlen">
+    <div class="grid grid-cols-2 gap-4 md:grid-cols-5 md:gap-6">
+      {
+        highlights.map((item) => (
+          <article
+            data-highlight
+            data-tilt
+            class="group relative rounded-xl border border-slate-800 bg-slate-900/40 p-6 transition-colors duration-300 hover:border-emerald-500/50 hover:bg-slate-900/70 hover:shadow-[0_0_40px_-12px_rgba(16,185,129,0.5)] will-change-transform"
+          >
+            <p
+              class="font-mono text-3xl font-bold tabular-nums text-emerald-400 sm:text-4xl"
+              data-count-to={item.to}
+              data-count-suffix={item.suffix}
+              data-count-decimals={item.decimals}
+            >
+              {item.to}{item.suffix}
+            </p>
+            <p class="mt-2 text-sm text-slate-400">{item.label}</p>
+            {item.sub && <p class="mt-1 text-xs text-slate-500">{item.sub}</p>}
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- ==================== D) MARQUEE SKILLS ==================== -->
+  <section class="border-y border-slate-900 py-8 sm:py-10" aria-label="Skills">
+    <ul class="sr-only">
+      {marqueeSkills.map((skill) => <li>{skill}</li>)}
+    </ul>
+
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        {
+          [...skillsRow, ...skillsRow].map((skill) => (
+            <span class="flex shrink-0 items-center gap-6 pr-6 font-mono text-sm uppercase tracking-[0.2em] text-slate-500">
+              {skill}
+              <span class="text-emerald-500/40">·</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+
+    <div class="marquee mt-4" aria-hidden="true">
+      <div class="marquee-track is-reverse">
+        {
+          [...skillsRow, ...skillsRow].map((skill) => (
+            <span class="flex shrink-0 items-center gap-6 pr-6 font-mono text-sm uppercase tracking-[0.2em] text-slate-500">
+              {skill}
+              <span class="text-emerald-500/40">·</span>
+            </span>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== E) HAUPT-PROJEKT ==================== -->
+  <section
+    id="projekt"
+    class="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28"
+    aria-labelledby="projekt-titel"
+  >
+    <p class="font-mono text-sm text-emerald-500"># hauptprojekt</p>
+    <h2
+      id="projekt-titel"
+      class="mt-4 text-[clamp(2.5rem,8vw,5.5rem)] font-black leading-[0.95] tracking-tight text-slate-50"
+    >
+      HAUPTPROJEKT
+    </h2>
+
+    <article
+      data-project
+      class="group mt-12 grid gap-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_70px_-20px_rgba(16,185,129,0.55)] will-change-transform sm:p-10 lg:grid-cols-2 lg:items-center"
+    >
+      <div>
+        <h3 class="text-2xl font-semibold text-slate-50 sm:text-3xl">
+          Ausbildung Smart Match Bot
+        </h3>
+        <p class="mt-2 font-mono text-xs text-slate-500">
+          Eigenes Projekt · seit 10/2026
+        </p>
+
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {
+            projectTags.map((tag) => (
+              <li
+                data-tag
+                class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400"
+              >
+                {tag}
+              </li>
+            ))
+          }
+        </ul>
+
+        <p class="mt-6 max-w-xl leading-relaxed text-slate-400">
+          Ein Bot, der Ausbildungsangebote automatisch einliest, mit meinem Profil
+          abgleicht und passende Stellen priorisiert. Er kombiniert Web Scraping,
+          LLM-basierte Bewertung und Telegram-Benachrichtigungen — vollständig
+          automatisiert, vom ersten Scan bis zur fertigen Bewerbung.
+        </p>
+
+        <div class="mt-8 grid grid-cols-3 gap-4">
+          {
+            projectStats.map((stat) => (
+              <div class="border-l-2 border-emerald-500/40 pl-3">
+                <p
+                  class="font-mono text-xl font-bold tabular-nums text-slate-50 sm:text-2xl"
+                  data-project-stat
+                  data-count-to={stat.to}
+                  data-count-suffix={stat.suffix}
+                  data-count-decimals={stat.decimals}
+                >
+                  {stat.to}{stat.suffix}
+                </p>
+                <p class="mt-1 text-xs text-slate-500">{stat.label}</p>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <!-- Screenshot / Placeholder (Terminal-Mock) mit Parallax -->
+      <div data-parallax class="overflow-hidden rounded-xl border border-slate-800 bg-slate-950/80">
+        <div class="flex items-center gap-2 border-b border-slate-800 px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="ml-2 font-mono text-xs text-slate-500">smart-match-bot</span>
+        </div>
+        <div class="space-y-1.5 p-5 font-mono text-xs leading-relaxed text-slate-400 sm:text-sm">
+          <p><span class="text-emerald-500">$</span> bot scan --all</p>
+          <p class="text-slate-500">&nbsp;&nbsp;215 Angebote geladen</p>
+          <p class="text-slate-500">&nbsp;&nbsp;Match-Score Ø 84.4%</p>
+          <p><span class="text-emerald-500">[ok]</span> 12 Treffer → Telegram gesendet</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="group mt-6 grid gap-6 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_50px_-20px_rgba(16,185,129,0.45)] sm:p-8 lg:grid-cols-2 lg:items-center">
+      <div>
+        <h3 class="text-xl font-semibold text-slate-50 sm:text-2xl">
+          Bachelorarbeit: ChatGPT in Unternehmen
+        </h3>
+        <p class="mt-2 font-mono text-xs text-slate-500">
+          Université Moulay Ismail, 2023
+        </p>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          <li class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400">
+            THESIS
+          </li>
+          <li class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400">
+            AI
+          </li>
+          <li class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400">
+            BUSINESS
+          </li>
+        </ul>
+        <p class="mt-4 max-w-xl leading-relaxed text-slate-400">
+          Wissenschaftliche Untersuchung der ökonomischen Auswirkungen von KI-Sprachmodellen auf Unternehmen.
+        </p>
+      </div>
+    </article>
+  </section>
+
+  <!-- ==================== F) WARUM AUSBILDUNG ==================== -->
+  <section
+    id="warum"
+    class="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28"
+    aria-labelledby="warum-titel"
+  >
+    <div data-editorial>
+      <p class="font-mono text-sm text-emerald-500">
+        <span data-editorial-type>// eine ehrliche Antwort</span><span
+          class="cursor"
+          aria-hidden="true">▌</span
+        >
+      </p>
+      <h2
+        id="warum-titel"
+        class="mt-4 text-[clamp(2.5rem,8vw,6rem)] font-black leading-[0.95] tracking-tight text-slate-50"
+      >
+        WARUM AUSBILDUNG?
+      </h2>
+    </div>
+
+    <div class="mt-12 grid gap-8 md:grid-cols-2">
+      <p data-col-left class="leading-relaxed text-slate-400">
+        In meiner Bachelorarbeit habe ich untersucht, wie Unternehmen ChatGPT
+        einsetzen — mit Fallbeispielen wie Inwi, Bank of Africa und DabaDoc in
+        Marokko. Dabei ist mir klar geworden: Es fehlt mir die praktische Umsetzung
+        im deutschen Kontext. Genau das verbindet das duale System — Theorie in
+        der Berufsschule, echte Verantwortung im Betrieb.
+      </p>
+      <p data-col-right class="leading-relaxed text-slate-400">
+        Deshalb habe ich den Ausbildung Smart Match Bot gebaut — ein eigenes
+        KI-Projekt mit Python, das Ausbildungsplätze automatisch findet und
+        bewertet. Bei einer Ausbildung sind mir klare Struktur, gutes Mentoring
+        und der deutsche Kontext wichtig. Erst danach möchte ich echte
+        Verantwortung übernehmen.
+      </p>
+    </div>
+  </section>
+
+  <!-- ==================== G) SKILLS ==================== -->
+  <section
+    id="skills"
+    class="mx-auto w-full max-w-6xl px-6 py-20 sm:py-28"
+    aria-labelledby="skills-titel"
+  >
+    <p class="font-mono text-sm text-emerald-500"># skills</p>
+    <h2
+      id="skills-titel"
+      class="mt-4 text-[clamp(2.5rem,7vw,4.5rem)] font-black leading-[0.95] tracking-tight text-slate-50"
+    >
+      SKILLS
+    </h2>
+
+    <ul class="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+      {
+        marqueeSkills.map((skill, i) => (
+          <li
+            data-skill-card
+            class="group rounded-lg border border-slate-800 bg-slate-900/40 p-4 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_30px_-10px_rgba(16,185,129,0.5)] will-change-transform"
+          >
+            <span class="font-mono text-xs text-slate-600">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <p class="mt-2 text-sm font-medium text-slate-300 transition-colors duration-200 group-hover:text-emerald-400">
+              {skill}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <!-- ==================== H) CTA ==================== -->
+  <section
+    data-cta
+    class="mx-auto w-full max-w-6xl px-6 py-24 sm:py-32"
+    aria-labelledby="cta-titel"
+  >
+    <h2
+      data-cta-reveal
+      id="cta-titel"
+      class="text-[clamp(2.5rem,10vw,7rem)] font-black leading-[0.92] tracking-tight text-slate-50"
+    >
+      LASS UNS<br />SPRECHEN.
+    </h2>
+
+    <p data-cta-reveal class="mt-6 max-w-xl leading-relaxed text-slate-400">
+      Du suchst jemanden für Digitalisierung, Automatisierung oder
+      Datenmanagement? Schreib mir — ich freue mich über jede Gelegenheit zu einer
+      Ausbildung oder einem Dualen Studium in Deutschland.
+    </p>
+
+    <div data-cta-reveal class="mt-10 flex flex-wrap items-center gap-4">
+      <a
+        data-magnetic
+        href={`mailto:${email}`}
+        class="btn-glow inline-flex items-center gap-2 rounded-lg bg-emerald-500 px-7 py-3.5 text-sm font-semibold text-slate-950 transition-colors duration-200 hover:bg-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      >
+        E-Mail senden
+        <span aria-hidden="true">→</span>
+      </a>
+
+      <a
+        href={telegram}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-7 py-3.5 text-sm font-semibold text-slate-200 transition-colors duration-200 hover:border-emerald-500/50 hover:text-emerald-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
+      >
+        Telegram
+      </a>
+    </div>
+  </section>
+
+  <!-- ==================== I) FOOTER ==================== -->
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initAnimations } from '../scripts/animations';
+  initAnimations();
+</script>

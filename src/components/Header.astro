@@ -1,0 +1,44 @@
+---
+const nav = [
+  { href: '/', label: 'Start' },
+  { href: '/projects', label: 'Projekte' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/cv', label: 'CV' },
+  { href: '/contact', label: 'Kontakt' },
+];
+
+const { pathname } = Astro.url;
+const isActive = (href: string) =>
+  href === '/' ? pathname === '/' : pathname.startsWith(href.split('#')[0]) && href.split('#').length === 1;
+---
+
+<header class="sticky top-0 z-50 border-b border-slate-900 bg-slate-950/80 backdrop-blur-md">
+  <div class="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-4 sm:px-6">
+    <a href="/" class="font-mono text-sm font-semibold tracking-tight text-slate-50 transition-colors hover:text-emerald-400">
+      <span class="text-emerald-500">&gt;</span>_ youssef
+    </a>
+
+    <nav aria-label="Hauptnavigation">
+      <ul class="flex items-center gap-0.5 font-mono text-xs sm:gap-2 sm:text-sm">
+        {
+          nav.map((item) => (
+            <li>
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'rounded-md px-1 py-1.5 transition-colors duration-200 sm:px-3',
+                  isActive(item.href)
+                    ? 'text-emerald-400'
+                    : 'text-slate-400 hover:text-slate-100',
+                ]}
+              >
+                {item.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

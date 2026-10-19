@@ -1,0 +1,243 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const matchTags = ['BOT', 'AI', 'AUTOMATION'];
+const matchStats = [
+  { value: '215+', label: 'Jobs pro Lauf' },
+  { value: '84.4%', label: 'Ø Match-Score' },
+  { value: '3 min', label: 'CV → Bewerbung' },
+];
+const techStack = [
+  'Python 3.11',
+  'Scrapling',
+  'OpenRouter (Qwen + DeepSeek)',
+  'SQLite',
+  'Gmail Apps Script',
+  'fpdf2',
+  'python-telegram-bot',
+];
+const results = [
+  'Automatisiert den kompletten Weg von der Jobquelle bis zur fertigen Bewerbung.',
+  'LLM-basiertes Scoring priorisiert passende Ausbildungsplätze nach Profil-Match.',
+  'Tägliche Telegram-Benachrichtigungen mit den relevantesten Treffern.',
+  'Erzeugt pro Durchlauf ein fertiges, formatiertes PDF-Anschreiben.',
+  'Nutzbar als täglicher Lauf — kein manuelles Suchen mehr nötig.',
+];
+
+const thesisTopics = [
+  'KI / ML / NLP — Grundlagen und Funktionsweise',
+  'ChatGPT-Architektur und Betriebsmodell',
+  'Use Cases: Chatbots, Übersetzung, Content-Erstellung',
+  'Fallbeispiele: Inwi, Bank of Africa, DabaDoc, ONEE',
+  'Ethik & Datenschutz beim Einsatz generativer KI',
+];
+---
+
+<BaseLayout
+  title="Projekte | Youssef Lafdi"
+  description="Projekte von Youssef Lafdi: Ausbildung Smart Match Bot (Python, KI, Automation) und die Bachelorarbeit über ChatGPT in Unternehmen."
+>
+  <Header />
+
+  <main class="mx-auto w-full max-w-6xl px-6 pb-24 pt-16 sm:pt-24">
+    <header class="max-w-3xl">
+      <p class="font-mono text-sm text-emerald-500">
+        <span data-reveal>// was ich gebaut habe</span><span class="cursor" aria-hidden="true">▌</span>
+      </p>
+      <h1
+        data-reveal
+        class="mt-4 text-[clamp(2.5rem,9vw,6rem)] font-black leading-[0.92] tracking-tight text-slate-50"
+      >
+        PROJEKTE
+      </h1>
+      <p data-reveal class="mt-6 max-w-xl leading-relaxed text-slate-400">
+        Zwei Arbeiten, die zeigen, wie ich denke: ein praxisnahes Automatisierungs-
+        projekt mit KI und eine wissenschaftliche Untersuchung des technischen
+        und ökonomischen Umfelds.
+      </p>
+    </header>
+
+    <!-- ============ PROJEKT 1: SMART MATCH BOT ============ -->
+    <article
+      data-reveal-card
+      class="group mt-16 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_70px_-20px_rgba(16,185,129,0.55)] sm:p-10"
+    >
+      <div class="flex flex-wrap items-center gap-3">
+        <span class="rounded-md border border-emerald-500/40 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-semibold uppercase tracking-wide text-emerald-400">
+          Hauptprojekt
+        </span>
+        <ul class="flex flex-wrap gap-2">
+          {
+            matchTags.map((tag) => (
+              <li
+                data-tag
+                class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400"
+              >
+                {tag}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <h2 class="mt-6 text-3xl font-bold tracking-tight text-slate-50 sm:text-4xl">
+        Ausbildung Smart Match Bot
+      </h2>
+      <p class="mt-2 font-mono text-xs text-slate-500">
+        Eigenes Projekt · seit 10/2026
+      </p>
+
+      <p class="mt-5 max-w-2xl leading-relaxed text-slate-400">
+        Ein Bot, der Ausbildungsangebote automatisch einliest, mit meinem Profil
+        abgleicht und passende Stellen priorisiert. Er kombiniert Web Scraping,
+        LLM-basierte Bewertung und Telegram-Benachrichtigungen — vollständig
+        automatisiert, vom ersten Scan bis zur fertigen Bewerbung.
+      </p>
+
+      <div class="mt-8 grid grid-cols-3 gap-4 border-y border-slate-800 py-6 sm:gap-6">
+        {
+          matchStats.map((stat) => (
+            <div class="border-l-2 border-emerald-500/40 pl-3 sm:pl-4">
+              <p class="font-mono text-xl font-bold tabular-nums text-slate-50 sm:text-3xl">{stat.value}</p>
+              <p class="mt-1 text-xs text-slate-500 sm:text-sm">{stat.label}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <div class="mt-8 grid gap-8 lg:grid-cols-2">
+        <section>
+          <h3 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Problem</h3>
+          <p class="mt-3 leading-relaxed text-slate-400">
+            Ausbildungsplätze zu finden, ist zeitaufwendig: dutzende Portale,
+            unregelmäßige Updates und manuelle Bewertung, ob eine Stelle zum
+            eigenen Profil passt. Vieles wird übersehen oder kommt zu spät.
+          </p>
+        </section>
+
+        <section>
+          <h3 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Lösung</h3>
+          <p class="mt-3 leading-relaxed text-slate-400">
+            Ein end-to-end-Bot, der Stellen kontinuierlich sammelt, per
+            Large-Language-Model gegen mein Profil bewertet und die besten Treffer
+            direkt als Telegram-Nachricht mit fertigem Anschreiben herausgibt.
+          </p>
+        </section>
+      </div>
+
+      <section class="mt-10">
+        <h3 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Tech Stack</h3>
+        <ul class="mt-4 flex flex-wrap gap-2">
+          {
+            techStack.map((tech) => (
+              <li class="rounded-md border border-slate-800 bg-slate-950/60 px-3 py-1.5 font-mono text-xs text-slate-300">
+                {tech}
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <section class="mt-10">
+        <h3 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Ergebnisse</h3>
+        <ul class="mt-4 space-y-3">
+          {
+            results.map((result) => (
+              <li class="flex gap-3 leading-relaxed text-slate-400">
+                <span class="mt-1 shrink-0 font-mono text-emerald-500" aria-hidden="true">▸</span>
+                <span>{result}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+
+      <div data-reveal class="mt-10 overflow-hidden rounded-xl border border-slate-800 bg-slate-950/80">
+        <div class="flex items-center gap-2 border-b border-slate-800 px-4 py-2.5">
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="h-2.5 w-2.5 rounded-full bg-slate-700"></span>
+          <span class="ml-2 font-mono text-xs text-slate-500">smart-match-bot</span>
+        </div>
+        <div class="space-y-1.5 p-5 font-mono text-xs leading-relaxed text-slate-400 sm:text-sm">
+          <p><span class="text-emerald-500">$</span> bot scan --all</p>
+          <p class="text-slate-500">&nbsp;&nbsp;215 Angebote geladen</p>
+          <p class="text-slate-500">&nbsp;&nbsp;Match-Score Ø 84.4%</p>
+          <p><span class="text-emerald-500">[ok]</span> 12 Treffer → Telegram gesendet</p>
+        </div>
+      </div>
+
+      <div class="mt-8">
+        <a
+          href="#"
+          class="inline-flex items-center gap-2 font-mono text-sm text-slate-400 transition-colors duration-200 hover:text-emerald-400"
+        >
+          <span class="text-slate-600" aria-hidden="true">$</span>
+          code ansehen <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </article>
+
+    <!-- ============ PROJEKT 2: BACHELORARBEIT ============ -->
+    <article
+      data-reveal-card
+      class="group mt-8 rounded-2xl border border-slate-800 bg-slate-900/40 p-6 transition-[border-color,box-shadow] duration-300 hover:border-emerald-500/50 hover:shadow-[0_0_50px_-20px_rgba(16,185,129,0.45)] sm:p-10"
+    >
+      <ul class="flex flex-wrap gap-2">
+        <li
+          data-tag
+          class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400"
+        >
+          THESIS
+        </li>
+        <li
+          data-tag
+          class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400"
+        >
+          AI
+        </li>
+        <li
+          data-tag
+          class="rounded-md border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 font-mono text-xs font-medium text-emerald-400"
+        >
+          BUSINESS
+        </li>
+      </ul>
+
+      <h2 class="mt-6 text-2xl font-bold tracking-tight text-slate-50 sm:text-3xl">
+        Bachelorarbeit — ChatGPT in Unternehmen
+      </h2>
+      <p class="mt-2 font-mono text-xs text-slate-500">
+        Université Moulay Ismail · 2023
+      </p>
+
+      <p class="mt-5 max-w-2xl leading-relaxed text-slate-400">
+        Wissenschaftliche Untersuchung der ökonomischen Auswirkungen von
+        KI-Sprachmodellen auf Unternehmen.
+      </p>
+
+      <section class="mt-8">
+        <h3 class="font-mono text-sm uppercase tracking-wider text-emerald-500">Themen</h3>
+        <ul class="mt-4 space-y-3">
+          {
+            thesisTopics.map((topic) => (
+              <li class="flex gap-3 leading-relaxed text-slate-400">
+                <span class="mt-1 shrink-0 font-mono text-emerald-500" aria-hidden="true">▸</span>
+                <span>{topic}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </article>
+  </main>
+
+  <Footer />
+</BaseLayout>
+
+<script>
+  import { initRevealAnimations } from '../scripts/animations';
+  initRevealAnimations();
+</script>

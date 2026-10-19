@@ -1,0 +1,9 @@
+allowBuilds:
+  esbuild: true
+  msgpackr-extract: true
+  onnxruntime-node: true
+  protobufjs: true
+  sharp: true
+
+nodeOptions: --experimental-require-module
+
